@@ -1,0 +1,11 @@
+--- linux/Makefile.orig	2024-05-02 14:02:33.876718808 +0200
++++ linux/Makefile	2024-05-02 13:25:04.406460253 +0200
+@@ -2,7 +2,7 @@
+ VERSION = 6
+ PATCHLEVEL = 9
+ SUBLEVEL = 0
+-EXTRAVERSION = -rc6
++EXTRAVERSION = -thor_kernel
+ NAME = Hurr durr I'ma ninja sloth
+ 
+ # *DOCUMENTATION*
