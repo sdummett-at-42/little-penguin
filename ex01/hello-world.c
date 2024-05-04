@@ -18,3 +18,5 @@ void cleanup_module(void)
 }
 
 MODULE_LICENSE("GPL");
+MODULE_AUTHOR("Stone <sdummett.dev@proton.me>");
+MODULE_DESCRIPTION("An hello world module");
