@@ -1,0 +1,26 @@
+From 0b70e1b95699ddbfd01f44fd4dc194bd48f8af05 Mon Sep 17 00:00:00 2001
+From: Stone <sdummett.dev@proton.me>
+Date: Sat, 4 May 2024 15:13:53 +0200
+Subject: [PATCH] Add extraversion string "-thor_kernel"
+
+Signed-off-by: Stone <sdummett.dev@proton.me>
+---
+ Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Makefile b/Makefile
+index 40fb2ca6fe4c..c8f2cd47329c 100644
+--- a/Makefile
++++ b/Makefile
+@@ -2,7 +2,7 @@
+ VERSION = 6
+ PATCHLEVEL = 9
+ SUBLEVEL = 0
+-EXTRAVERSION = -rc6
++EXTRAVERSION = -thor_kernel
+ NAME = Hurr durr I'ma ninja sloth
+ 
+ # *DOCUMENTATION*
+-- 
+2.44.0
+
