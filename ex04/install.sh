@@ -3,7 +3,7 @@
 echo "[+] Compiling the module"
 make
 
-MODNAME="hello-world.ko"
+MODNAME="usb-kbd.ko"
 
 echo "[+] Copying $MODNAME in /tmp"
 sudo cp $MODNAME /tmp

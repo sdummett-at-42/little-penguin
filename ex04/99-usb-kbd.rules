@@ -1,2 +1,2 @@
 # Udev rule that insert a hello-world module when a keyboard is plugged
-ACTION=="add",    SUBSYSTEM=="hidraw",  ATTRS{configuration}=="HID Keyboard", RUN+="/usr/sbin/insmod /tmp/hello-world.ko"
+ACTION=="add",    SUBSYSTEM=="hidraw",  ATTRS{configuration}=="HID Keyboard", RUN+="/usr/sbin/insmod /tmp/usb-kbd.ko"

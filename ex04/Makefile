@@ -1,4 +1,4 @@
-obj-m += hello-world.o
+obj-m += usb-kbd.o
 
 PWD := $(CURDIR)
 

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-MODNAME="hello-world.ko"
+MODNAME="usb-kbd.ko"
 
 echo "[+] Removing /tmp/$MODNAME"
 sudo rm /tmp/$MODNAME
