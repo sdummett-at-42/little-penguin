@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-2.0-only
 /*
  * fortytwo.c - A misc character device driver.
  */
@@ -19,8 +20,7 @@
 /* Return the LOGIN when /dev/fortytwo is read */
 static ssize_t fortytwo_read(struct file *filp, char __user *buf, size_t count, loff_t *f_pos)
 {
-	return simple_read_from_buffer(buf, count, f_pos, LOGIN, \
-		LOGIN_LEN);
+	return simple_read_from_buffer(buf, count, f_pos, LOGIN, LOGIN_LEN);
 }
 
 /* If the written value match LOGIN return the count else return EINVAL */
@@ -57,8 +57,8 @@ static struct miscdevice fortytwo = {
 /* Init the misc character device*/
 static int __init fortytwo_init(void)
 {
-    pr_info("%s: loaded with minor number %i.\n", CHARDEV_NAME, fortytwo.minor);
-    return misc_register(&fortytwo);
+	pr_info("%s: loaded with minor number %i.\n", CHARDEV_NAME, fortytwo.minor);
+	return misc_register(&fortytwo);
 }
 
 /* Cleanup the misc character device */

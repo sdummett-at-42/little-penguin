@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-2.0-only
 /*
  * fortytwo-debufs.c - A debugfs module.
  */
@@ -31,7 +32,8 @@ static struct dentry *fortytwo_dir;
 static char foo_data[PAGE_SIZE];
 static DEFINE_MUTEX(mtx);
 
-static ssize_t foo_read(struct file *filp, char __user *buf, size_t count, loff_t *f_pos) {
+static ssize_t foo_read(struct file *filp, char __user *buf, size_t count, loff_t *f_pos)
+{
 	ssize_t retval = -EINVAL;
 
 	mutex_lock(&mtx);
@@ -43,7 +45,8 @@ static ssize_t foo_read(struct file *filp, char __user *buf, size_t count, loff_
 	return retval;
 }
 
-static ssize_t foo_write(struct file *filp, const char __user *buf, size_t count, loff_t *f_pos) {
+static ssize_t foo_write(struct file *filp, const char __user *buf, size_t count, loff_t *f_pos)
+{
 	ssize_t retval = -EINVAL;
 
 	mutex_lock(&mtx);
@@ -65,8 +68,7 @@ const struct file_operations foo_fops = {
 /* Return the LOGIN when 'id' is read */
 static ssize_t id_read(struct file *filp, char __user *buf, size_t count, loff_t *f_pos)
 {
-	return simple_read_from_buffer(buf, count, f_pos, LOGIN, \
-		LOGIN_LEN);
+	return simple_read_from_buffer(buf, count, f_pos, LOGIN, LOGIN_LEN);
 }
 
 /* If the written value match LOGIN return the count else return EINVAL */
@@ -93,7 +95,8 @@ const struct file_operations id_fops = {
 	.write = id_write,
 };
 
-static int fail(void) {
+static int fail(void)
+{
 	debugfs_remove_recursive(fortytwo_dir);
 	pr_alert("Could not create devices");
 	return -ENODEV;
@@ -102,7 +105,7 @@ static int fail(void) {
 /* Init the debugfs module */
 static int __init fortytwo_init(void)
 {
-    pr_info("%s: Installing the directory tree.\n", MODULE_NAME);
+	pr_info("%s: Installing the directory tree.\n", MODULE_NAME);
 
 	pr_info("%s: Creating debugfs subdirectory named 'fortytwo'.\n", MODULE_NAME);
 	fortytwo_dir = debugfs_create_dir("fortytwo", NULL);

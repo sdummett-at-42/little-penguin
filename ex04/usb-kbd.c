@@ -1,8 +1,9 @@
+// SPDX-License-Identifier: GPL-2.0-only
 /*
  * usb-kbd.c - Usb keyboard module.
  */
 
-#include <linux/init.h> /* Needed for the macros */ 
+#include <linux/init.h> /* Needed for the macros */
 #include <linux/module.h> /* Needed by all modules */
 #include <linux/printk.h> /* Needed for pr_info() */
 
