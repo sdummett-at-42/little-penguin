@@ -49,9 +49,13 @@ static ssize_t foo_write(struct file *filp, const char __user *buf, size_t count
 {
 	ssize_t retval = -EINVAL;
 
+	if (count > PAGE_SIZE)
+		return retval;
+
 	mutex_lock(&mtx);
 
-	retval = simple_write_to_buffer(foo_data, PAGE_SIZE, f_pos, buf, count);
+	retval = simple_write_to_buffer(foo_data, count, f_pos, buf, count);
+	foo_data[count - 1] = 0x0;
 
 	mutex_unlock(&mtx);
 

@@ -10,6 +10,7 @@ MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Stone <sdummett.dev@proton.me");
 MODULE_DESCRIPTION("When /dev/reverse is read it reverse what has been written.");
 
+static DEFINE_MUTEX(mtx);
 char str[PAGE_SIZE];
 char *tmp;
 
@@ -25,8 +26,12 @@ static ssize_t myfd_read(struct file *fp, char __user *user, size_t size, loff_t
 		tmp[i] = str[t];
 	tmp[i] = 0x0;
 
+	mutex_lock(&mtx);
+
 	res = simple_read_from_buffer(user, size, offs, tmp, i);
 	kfree(tmp);
+
+	mutex_unlock(&mtx);
 	return res;
 }
 
@@ -34,9 +39,13 @@ static ssize_t myfd_write(struct file *fp, const char __user *user, size_t size,
 {
 	ssize_t res;
 
+	mutex_lock(&mtx);
+
 	res = 0;
 	res = simple_write_to_buffer(str, size, offs, user, size);
 	str[size - 1] = 0x0;
+
+	mutex_unlock(&mtx);
 	return res;
 }
 
