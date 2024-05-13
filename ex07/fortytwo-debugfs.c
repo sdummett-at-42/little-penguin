@@ -102,7 +102,7 @@ const struct file_operations id_fops = {
 static int fail(void)
 {
 	debugfs_remove_recursive(fortytwo_dir);
-	pr_alert("Could not create devices");
+	pr_info("%s: Could not create devices.\n", MODULE_NAME);
 	return -ENODEV;
 }
 

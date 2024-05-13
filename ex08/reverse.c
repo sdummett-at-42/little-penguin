@@ -58,7 +58,8 @@ const struct file_operations myfd_fops = {
 static struct miscdevice myfd_device = {
 	.minor = MISC_DYNAMIC_MINOR,
 	.name = "reverse",
-	.fops = &myfd_fops
+	.fops = &myfd_fops,
+	.mode = 0666,
 };
 
 static int __init myfd_init(void)

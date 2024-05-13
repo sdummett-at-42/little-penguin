@@ -7,3 +7,9 @@ all:
 
 clean:
 	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean%
+
+install: remove
+	sudo insmod fortytwo.ko
+
+remove:
+	- sudo rmmod fortytwo.ko 2>/dev/null

@@ -52,6 +52,7 @@ static struct miscdevice fortytwo = {
 	.minor = MISC_DYNAMIC_MINOR,
 	.name = CHARDEV_NAME,
 	.fops = &fortytwo_fops,
+	.mode = 0666,
 };
 
 /* Init the misc character device*/
