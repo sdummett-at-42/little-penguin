@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
-* mymounts.c - List mount points on the system
-*/
+ * mymounts.c - List mount points on the system
+ */
 
 #include <linux/kernel.h>
 #include <linux/module.h>
@@ -17,8 +17,8 @@ static struct proc_dir_entry *procfile;
 static int mymounts_show(struct seq_file *m, void *v)
 {
 	struct rb_node *node;
-
 	struct mnt_namespace *ns = current->nsproxy->mnt_ns;
+
 	for (node = rb_first(&ns->mounts); node; node = rb_next(node)) {
 		struct mount *mnt = rb_entry(node, struct mount, mnt_node);
 
@@ -26,12 +26,12 @@ static int mymounts_show(struct seq_file *m, void *v)
 		struct super_block *sb = mnt_path.dentry->d_sb;
 
 		if (!strcmp(mnt->mnt_devname, "rootfs"))
-				continue ;
+			continue;
 
 		if (sb->s_op->show_devname)
-				sb->s_op->show_devname(m, mnt_path.dentry);
+			sb->s_op->show_devname(m, mnt_path.dentry);
 		else
-				seq_puts(m, mnt->mnt_devname ? mnt->mnt_devname : "none");
+			seq_puts(m, mnt->mnt_devname ? mnt->mnt_devname : "none");
 		seq_putc(m, ' ');
 		seq_path(m, &mnt_path, " \t\n\\");
 		seq_putc(m, '\n');
@@ -52,7 +52,7 @@ static const struct proc_ops mymounts_proc_ops = {
 static int __init mymounts_init(void)
 {
 	procfile = proc_create(PROCFS_NAME, 0644, NULL, &mymounts_proc_ops);
-	if (NULL == procfile) {
+	if (procfile == NULL) {
 		proc_remove(procfile);
 		pr_alert("%s: Error: Could not initialize /proc/%s\n", PROCFS_NAME, PROCFS_NAME);
 		return -ENOMEM;
